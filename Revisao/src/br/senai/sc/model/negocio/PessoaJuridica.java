@@ -13,7 +13,7 @@ public class PessoaJuridica {
     private String razaoSocial;
     private String nomeFantasia;
 
-    public PessoaJuridica() {
+    public class PessoaJuridico extends Pessoa {
     }
 
     public String getCnpj() {
