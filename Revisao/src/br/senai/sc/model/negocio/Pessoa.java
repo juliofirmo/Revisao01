@@ -11,6 +11,13 @@ public class Pessoa {
     private String telefone;
     private String dataCadastro;
 
+    
+    public Pessoa(){
+        
+    }
+    
+    
+    
     public int getId() {
         return id;
     }
