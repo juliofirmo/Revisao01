@@ -4,6 +4,7 @@ package br.senai.sc.model.negocio;
  *
  * @author julio_firmo
  */
+
 public class Pessoa {
     private int id;
     private String endereco;
