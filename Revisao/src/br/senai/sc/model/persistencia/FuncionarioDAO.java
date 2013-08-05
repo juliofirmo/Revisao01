@@ -16,8 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class FuncionarioDAO {
 
-    public void adicionar(Funcionario f, 
-       List<Funcionario> funcionarios){
+    public void adicionar(Funcionario f,
+            List<Funcionario> funcionarios) {
         funcionarios.add(f);
         JOptionPane.showMessageDialog(null, "Funcionario"
                 + "adicionado com sucesso");
@@ -38,4 +38,15 @@ public class FuncionarioDAO {
         }
         JOptionPane.showMessageDialog(null, msg);
     }
-}
+
+    public void excluir(String nome,
+            List<Funcionario> funcionarios) {
+        Funcionario fRemove = null;
+        for (Funcionario f : funcionarios) {
+            if (f.getNome().equals (nome)){
+                fRemove = f;
+            }
+        }
+        funcionarios.remove (fRemove);
+        }
+    }
