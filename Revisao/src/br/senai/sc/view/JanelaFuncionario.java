@@ -10,7 +10,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class JanelaFuncionario {
-    
+
     public void menuFuncionario(List<Funcionario> funcionarios) {
 
         int opcao = 0;
@@ -29,8 +29,10 @@ public class JanelaFuncionario {
                     adicionaFuncionario(funcionarios);
                     break;
                 case 2:
+                    removeFuncionario(funcionarios);
                     break;
                 case 3:
+                    alteraFuncionario(funcionarios);
                     break;
                 case 4:
                     break;
@@ -75,5 +77,42 @@ public class JanelaFuncionario {
         FuncionarioDAO dao = new FuncionarioDAO();
         dao.listar(funcionarios);
 
+    }
+
+    private void removeFuncionario(List<Funcionario> funcionarios) {
+        FuncionarioDAO dao = new FuncionarioDAO();
+        String nome = JOptionPane.showInputDialog("Informe o numero de funcionario a ser excluido");
+        dao.excluir(nome, funcionarios);
+
+    }
+
+    private void alteraFuncionario(List<Funcionario> funcionarios) {
+        FuncionarioDAO dao = new FuncionarioDAO();
+        String nome = JOptionPane.showInputDialog("Informe o nome do funcionário a ser alterado:  ");
+
+        Funcionario fAltera = new Funcionario();
+
+        fAltera = dao.buscaFuncionarioByNome(nome, funcionarios);
+        if (fAltera != null) {
+            fAltera.setNome(JOptionPane.showInputDialog("Insira o nome", fAltera.getNome()));
+            fAltera.setDataNascimento(JOptionPane.showInputDialog("Insira data de nascimento", fAltera.getDataNascimento()));
+            fAltera.setRg(JOptionPane.showInputDialog("Digite seu rg", fAltera.getRg()));
+            fAltera.setCpf(JOptionPane.showInputDialog("Digite seu cpf", fAltera.getCpf()));
+            fAltera.setCargo(JOptionPane.showInputDialog("Informe o cargo do funcionário", fAltera.getCargo()));
+            fAltera.setEndereco(JOptionPane.showInputDialog("Digite seu endereço", fAltera.getEndereco()));
+            fAltera.setTelefone(JOptionPane.showInputDialog("Digite seu telefone", fAltera.getTelefone()));
+            fAltera.setDataCadastro(JOptionPane.showInputDialog("Digite seu data cadastro", fAltera.getDataCadastro()));
+            fAltera.setSalario(Double.parseDouble(JOptionPane.showInputDialog("Digite seu Salario", fAltera.getSalario())));
+            fAltera.setDataAdmissao(JOptionPane.showInputDialog("Digite sua data de admissão", fAltera.getDataAdmissao()));;
+            fAltera.setCtps(JOptionPane.showInputDialog("Digite seu ctps: ", fAltera.getCtps()));
+            fAltera.setCargo(JOptionPane.showInputDialog("Digite seu cargo: ", fAltera.getCargo()));
+
+
+            dao.altera(nome, funcionarios, fAltera);
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Funcionario" + nome + "Nao existente");
+        }
     }
 }
